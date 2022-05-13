@@ -1,5 +1,5 @@
 %{   
-   #include "y.tab.h"
+   #include "miniL-parser.h"
    int currLine = 1, currPos = 1;
    int numNumbers = 0;
    int numOperators = 0;

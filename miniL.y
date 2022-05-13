@@ -30,6 +30,7 @@ FILE * yyin;
 %left L_SQUARE_BRACKET R_SQUARE_BRACKET
 %left L_PAREN R_PAREN 
 
+
 %% 
 input:
 			| input program 
