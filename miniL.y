@@ -35,8 +35,38 @@ input:
 			| input program
 			;
 
-program:	term END {printf("program -> var \n");}         
+program:	bool-expr END {printf("program -> var \n");}         
 			;
+
+bool-expr:
+        relation-and-expr {printf("bool-expr -> relation-and-expr \n");}
+        | relation-and-expr OR bool-expr {printf("bool-expr -> relation-and-expr OR bool-expr \n");}
+      ;
+
+relation-and-expr:
+          relation-expr {printf("relation-and-expr -> relation-expr \n");}
+          |relation-expr AND relation-and-expr {printf("relation-and-expr -> relation-expr AND relation-and-expr \n");}
+      ;
+
+relation-expr:
+        expression comp expression {printf("relation-expr -> expression comp expression \n");}
+        | TRUE {printf("relation-expr -> TRUE \n");}
+        | FALSE {printf("relation-expr -> FALSE \n");}
+        | L_PAREN bool-expr R_PAREN {printf("relation-expr -> L_PAREN bool-expr R_PAREN \n");}
+        | NOT expression comp expression {printf("relation-expr -> NOT expression comp expression \n");}
+        | NOT TRUE {printf("relation-expr -> NOT TRUE \n");}
+        | NOT FALSE {printf("relation-expr -> NOT FALSE \n");}
+        | NOT L_PAREN bool-expr R_PAREN {printf("relation-expr -> NOT L_PAREN bool-expr R_PAREN \n");}
+      ;
+
+comp:
+      EQ {printf("comp -> EQ \n");}
+      |NEQ {printf("comp -> NEQ \n");}
+      | LT {printf("comp -> LT \n");}
+      | GT {printf("comp -> GT \n");}
+      | LTE {printf("comp -> LTE \n");}
+      | GTE {printf(" comp -> GTE \n");}
+      ;
 
 term:
       SUB var {printf("term -> SUB var \n");}
