@@ -31,12 +31,63 @@ FILE * yyin;
 %left L_PAREN R_PAREN 
 
 %% 
-input:	
-			| input program
-			;
+input:
+			| input program 
+		;
 
-program:	statement END {printf("program -> statement \n");}         
-			;
+program:  
+      | functions {printf("program -> functions \n");}
+		;
+functions:{printf("functions -> eplsilon \n");}
+      | function functions {printf("functions -> function functions \n");}
+    ;
+
+function:
+      FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON  END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON  END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("function -> FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY {printf("FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON END_BODY \n");}
+      | FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY {printf("FUNCTION ident SEMICOLON BEGIN_PARAMS declaration SEMICOLON another-declaration END_PARAMS BEGIN_LOCALS declaration SEMICOLON another-declaration END_LOCALS BEGIN_BODY statement SEMICOLON another-statement END_BODY \n");}
+      ;
+
+declaration:
+        ident COLON INTEGER {printf("declaration -> ident COLON INTEGER \n");}
+        | ident another-ident COLON INTEGER {printf("declaration -> ident another-ident COLON INTEGER \n");}
+        | ident COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER {printf("declaration -> ident COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER \n");}
+        | ident COLON ENUM L_PAREN ident R_PAREN {printf("declaration -> ident COLON ENUM L_PAREN ident R_PAREN \n");}
+        | ident COLON ENUM L_PAREN ident another-ident R_PAREN {printf("declaration ->  ident COLON ENUM L_PAREN ident  another-ident R_PAREN \n");}
+        | ident another-ident COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER {printf("declaration -> ident another-ident COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER \n");}
+        | ident another-ident COLON ENUM L_PAREN ident R_PAREN {printf("declaration -> ident another-ident COLON ENUM L_PAREN ident R_PAREN \n");} 
+        | ident another-ident COLON ENUM L_PAREN ident another-ident R_PAREN {printf("declaration -> ident another-ident COLON ENUM L_PAREN ident another-ident R_PAREN \n");}
+      ;
+
+another-ident: {printf("another-ident->eplsilon");}
+      | COMMA ident another-ident {printf("another-ident -> COMMA ident another-ident \n");}
+      ;
+
+another-declaration: {printf("another-declaration->eplsilon");}
+      | declaration SEMICOLON another-declaration {printf("another-declaration -> declaration SEMICOLON another-declaration \n");}
+      ;
 
 statement:
         var ASSIGN expression {printf("statement -> var ASSIGN expression \n");}
@@ -62,19 +113,19 @@ another-var:
          | var COMMA another-var {printf("another-var -> var COMMA another-var \n");}
       ;
 
-another-statement:
+another-statement: {printf("another-statement->eplsilon \n");}
         | statement SEMICOLON another-statement {printf("another-statement  -> statement SEMICOLON another-statement \n");}
       ;
 
-another-if-statement:
+another-if-statement: {printf("another-if-statement->eplsilon \n");}
         | statement SEMICOLON another-if-statement {printf("another-if-statement  -> statement SEMICOLON another-if-statement \n");}
       ;
 
-another-else-statement:
+another-else-statement: {printf("another-else-statement->eplsilon \n");}
         | statement SEMICOLON another-else-statement {printf("another-else-statement  -> statement SEMICOLON another-else-statement \n");}
       ;
 
-bool-expr:
+bool-expr: 
         relation-and-expr {printf("bool-expr -> relation-and-expr \n");}
         | relation-and-expr OR bool-expr {printf("bool-expr -> relation-and-expr OR bool-expr \n");}
       ;
@@ -101,7 +152,7 @@ comp:
       | LT {printf("comp -> LT \n");}
       | GT {printf("comp -> GT \n");}
       | LTE {printf("comp -> LTE \n");}
-      | GTE {printf(" comp -> GTE \n");}
+      | GTE {printf("comp -> GTE \n");}
       ;
 
 term:
@@ -109,14 +160,14 @@ term:
       | SUB NUMBER  {printf("term -> SUB NUMBER \n");}
       | SUB L_PAREN expression R_PAREN {printf("term -> SUB L_PAREN expression R_PAREN \n");}
       | var {printf("term -> var \n");}
-      | NUMBER {printf("term -> NUMBER %f \n", $1);}
+      | NUMBER {printf("term -> NUMBER \n");}
       | L_PAREN expression R_PAREN {printf("term -> L_PAREN expression R_PAREN \n");}
-      | ident L_PAREN R_PAREN {printf(" term -> ident L_PAREN R_PAREN");}
+      | ident L_PAREN R_PAREN {printf(" term -> ident L_PAREN R_PAREN \n");}
       | ident L_PAREN expression R_PAREN {printf("term -> ident L_PAREN expression R_PAREN \n");}
       | ident L_PAREN expression another-expression R_PAREN {printf("term -> ident L_PAREN expression another-expression R_PAREN \n");}
     ;
 
-another-expression:
+another-expression: {printf("another-expression->eplsilon");}
       | COMMA expression another-expression {printf("another-expression -> COMMA expression another-expression \n");}
     ;
 
@@ -135,7 +186,7 @@ multipicative-expr:
 
 var:
       ident {printf("var -> ident \n");}
-      | ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
+      | ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET {printf("var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET \n");}
     ;
   
 ident:
