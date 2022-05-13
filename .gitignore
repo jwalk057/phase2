@@ -5,3 +5,7 @@ miniL
 miniL-lex.c
 miniL-parser.c
 miniL-parser.h
+calc
+lex.yy.c
+y.tab.c
+y.tab.h

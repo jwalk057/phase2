@@ -35,21 +35,35 @@ input:
 			| input program
 			;
 
-program:	var END {printf("program -> var \n");}         
+program:	term END {printf("program -> var \n");}         
 			;
+
+expression:
+      NUMBER {printf("expression -> NUMBER\n");}
+    ;
+anotherexpression:
+      | COMMA expression anotherexpression {printf("anotherexpression -> COMMA expression anotherexpression \n");}
+    ;
+term:
+      SUB var {printf("term -> SUB var \n");}
+      | SUB NUMBER  {printf("term -> SUB NUMBER \n");}
+      | SUB L_PAREN expression R_PAREN {printf("term -> SUB L_PAREN expression R_PAREN \n");}
+      | var {printf("term -> var \n");}
+      | NUMBER {printf("term -> NUMBER \n");}
+      | L_PAREN expression R_PAREN {printf("term -> L_PAREN expression R_PAREN \n");}
+      | ident L_PAREN R_PAREN {printf(" term -> ident L_PAREN R_PAREN");}
+      | ident L_PAREN expression R_PAREN {printf("term -> ident L_PAREN expression R_PAREN \n");}
+      | ident L_PAREN expression anotherexpression R_PAREN {printf("term -> ident L_PAREN expression anotherexpression R_PAREN \n");}
+    ;
 
 var:
       ident {printf("var -> ident \n");}
       | ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-   ;
-
+    ;
+  
 ident:
       IDENT {printf("ident -> IDENT %s\n", $1);}
    ;
-
-expression:
-      NUMBER {printf("%f\n", $1);}
-    ;
 
 %% 
 
