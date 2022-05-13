@@ -38,23 +38,34 @@ input:
 program:	term END {printf("program -> var \n");}         
 			;
 
-expression:
-      NUMBER {printf("expression -> NUMBER\n");}
-    ;
-anotherexpression:
-      | COMMA expression anotherexpression {printf("anotherexpression -> COMMA expression anotherexpression \n");}
-    ;
 term:
       SUB var {printf("term -> SUB var \n");}
       | SUB NUMBER  {printf("term -> SUB NUMBER \n");}
       | SUB L_PAREN expression R_PAREN {printf("term -> SUB L_PAREN expression R_PAREN \n");}
       | var {printf("term -> var \n");}
-      | NUMBER {printf("term -> NUMBER \n");}
+      | NUMBER {printf("term -> NUMBER %f \n", $1);}
       | L_PAREN expression R_PAREN {printf("term -> L_PAREN expression R_PAREN \n");}
       | ident L_PAREN R_PAREN {printf(" term -> ident L_PAREN R_PAREN");}
       | ident L_PAREN expression R_PAREN {printf("term -> ident L_PAREN expression R_PAREN \n");}
-      | ident L_PAREN expression anotherexpression R_PAREN {printf("term -> ident L_PAREN expression anotherexpression R_PAREN \n");}
+      | ident L_PAREN expression another-expression R_PAREN {printf("term -> ident L_PAREN expression anotherexpression R_PAREN \n");}
     ;
+
+another-expression:
+      | COMMA expression another-expression {printf("another-expression -> COMMA expression another-expression \n");}
+    ;
+
+expression:
+      multipicative-expr {printf("expression -> multipicative-expr \n");}
+      | multipicative-expr ADD expression {printf("expression -> multipicative-expr ADD expression \n");}
+      | multipicative-expr SUB expression {printf("expression -> multipicative-expr SUB expression \n");}
+    ;
+
+multipicative-expr:
+          term {printf("multipicative-expr -> term \n");}
+          | term MULT multipicative-expr {printf("multipicative-expr -> term MULT multipicative-expr \n");}
+          | term DIV multipicative-expr {printf("multipicative-expr -> term DIV multipicative-expr \n");}
+          | term MOD multipicative-expr {printf("multipicative-expr -> term MOD multipicative-expr \n");}
+;
 
 var:
       ident {printf("var -> ident \n");}
