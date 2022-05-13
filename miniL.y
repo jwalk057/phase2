@@ -35,8 +35,44 @@ input:
 			| input program
 			;
 
-program:	bool-expr END {printf("program -> var \n");}         
+program:	statement END {printf("program -> statement \n");}         
 			;
+
+statement:
+        var ASSIGN expression {printf("statement -> var ASSIGN expression \n");}
+        | IF bool-expr THEN statement SEMICOLON ENDIF {printf("statement -> IF bool-expr THEN statement SEMICOLON ENDIF \n");}
+        | IF bool-expr THEN statement SEMICOLON another-if-statement ENDIF {printf("statement -> IF bool-expr THEN statement SEMICOLON another-if-statement ENDIF \n");}
+        | IF bool-expr THEN statement SEMICOLON ELSE statement SEMICOLON ENDIF {printf("statement -> IF bool-expr THEN statement SEMICOLON ELSE statement SEMICOLON ENDIF \n");}
+        | IF bool-expr THEN statement SEMICOLON another-if-statement ELSE statement SEMICOLON ENDIF {printf("statement -> IF bool-expr THEN statement SEMICOLON another-if-statement ELSE statement SEMICOLON ENDIF \n");}
+        | IF bool-expr THEN statement SEMICOLON another-if-statement ELSE statement SEMICOLON another-else-statement ENDIF {printf("statement -> IF bool-expr THEN statement SEMICOLON another-if-statement ELSE statement SEMICOLON another-else-statement ENDIF \n");}
+        | WHILE bool-expr BEGINLOOP statement SEMICOLON ENDLOOP {printf("statement -> WHILE bool-expr BEGINLOOP statement SEMICOLON ENDLOOP \n");}
+        | WHILE bool-expr BEGINLOOP statement SEMICOLON another-statement ENDLOOP {printf("statement -> WHILE bool-expr BEGINLOOP statement SEMICOLON another-statement ENDLOOP \n");}
+        | DO BEGINLOOP statement SEMICOLON ENDLOOP WHILE bool-expr {printf("statement -> DO BEGINLOOP statement SEMICOLON ENDLOOP WHILE bool-expr \n");}
+        | DO BEGINLOOP statement SEMICOLON another-statement ENDLOOP WHILE bool-expr {printf("statement -> DO BEGINLOOP statement SEMICOLON another-statement ENDLOOP WHILE bool-expr \n");}
+        | READ var {printf("statement -> READ var \n");}
+        | READ var COMMA another-var {printf("statement ->  READ var COMMA another-var \n");}
+        | WRITE var {printf("statement -> WRITE var \n");}
+        | WRITE var COMMA another-var {printf("statement -> WRITE var COMMA another-var \n");}
+        | CONTINUE {printf("statement -> CONTINUE \n");}
+        | RETURN expression {printf("statement -> RETURN expression \n");}
+      ;
+
+another-var:
+         var {printf("another-var -> var \n");}
+         | var COMMA another-var {printf("another-var -> var COMMA another-var \n");}
+      ;
+
+another-statement:
+        | statement SEMICOLON another-statement {printf("another-statement  -> statement SEMICOLON another-statement \n");}
+      ;
+
+another-if-statement:
+        | statement SEMICOLON another-if-statement {printf("another-if-statement  -> statement SEMICOLON another-if-statement \n");}
+      ;
+
+another-else-statement:
+        | statement SEMICOLON another-else-statement {printf("another-else-statement  -> statement SEMICOLON another-else-statement \n");}
+      ;
 
 bool-expr:
         relation-and-expr {printf("bool-expr -> relation-and-expr \n");}
@@ -77,7 +113,7 @@ term:
       | L_PAREN expression R_PAREN {printf("term -> L_PAREN expression R_PAREN \n");}
       | ident L_PAREN R_PAREN {printf(" term -> ident L_PAREN R_PAREN");}
       | ident L_PAREN expression R_PAREN {printf("term -> ident L_PAREN expression R_PAREN \n");}
-      | ident L_PAREN expression another-expression R_PAREN {printf("term -> ident L_PAREN expression anotherexpression R_PAREN \n");}
+      | ident L_PAREN expression another-expression R_PAREN {printf("term -> ident L_PAREN expression another-expression R_PAREN \n");}
     ;
 
 another-expression:
