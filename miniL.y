@@ -39,7 +39,7 @@ input:
 program:  
       | functions {printf("program -> functions \n");}
 		;
-functions:{printf("functions -> eplsilon \n");}
+functions:{printf("functions -> epsilon \n");}
       | function functions {printf("functions -> function functions \n");}
     ;
 
@@ -82,11 +82,11 @@ declaration:
         | ident another-ident COLON ENUM L_PAREN ident another-ident R_PAREN {printf("declaration -> ident another-ident COLON ENUM L_PAREN ident another-ident R_PAREN \n");}
       ;
 
-another-ident: {printf("another-ident->eplsilon");}
+another-ident: {printf("another-ident->epsilon");}
       | COMMA ident another-ident {printf("another-ident -> COMMA ident another-ident \n");}
       ;
 
-another-declaration: {printf("another-declaration->eplsilon");}
+another-declaration: {printf("another-declaration->epsilon");}
       | declaration SEMICOLON another-declaration {printf("another-declaration -> declaration SEMICOLON another-declaration \n");}
       ;
 
@@ -114,15 +114,15 @@ another-var:
          | var COMMA another-var {printf("another-var -> var COMMA another-var \n");}
       ;
 
-another-statement: {printf("another-statement->eplsilon \n");}
+another-statement: {printf("another-statement->epsilon \n");}
         | statement SEMICOLON another-statement {printf("another-statement  -> statement SEMICOLON another-statement \n");}
       ;
 
-another-if-statement: {printf("another-if-statement->eplsilon \n");}
+another-if-statement: {printf("another-if-statement->epsilon \n");}
         | statement SEMICOLON another-if-statement {printf("another-if-statement  -> statement SEMICOLON another-if-statement \n");}
       ;
 
-another-else-statement: {printf("another-else-statement->eplsilon \n");}
+another-else-statement: {printf("another-else-statement->epsilon \n");}
         | statement SEMICOLON another-else-statement {printf("another-else-statement  -> statement SEMICOLON another-else-statement \n");}
       ;
 
@@ -168,7 +168,7 @@ term:
       | ident L_PAREN expression another-expression R_PAREN {printf("term -> ident L_PAREN expression another-expression R_PAREN \n");}
     ;
 
-another-expression: {printf("another-expression->eplsilon");}
+another-expression: {printf("another-expression->epsilon");}
       | COMMA expression another-expression {printf("another-expression -> COMMA expression another-expression \n");}
     ;
 
